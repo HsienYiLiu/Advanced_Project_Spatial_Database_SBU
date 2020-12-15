@@ -1,0 +1,15 @@
+DECLARE @g1 geometry;
+SET @g1 = geometry::STPolyFromText(
+'POLYGON((-73.564453125 41.178653972331674, 
+-71.69128417968749 41.178653972331674,
+-71.69128417968749 42.114523952464246, 
+-73.564453125 42.114523952464246,
+-73.564453125 41.178653972331674
+))', 4326 );
+
+select longtitude, latitude as Countain_Points
+from dt
+where @g1.STContains( dt.points) = 1
+
+
+
